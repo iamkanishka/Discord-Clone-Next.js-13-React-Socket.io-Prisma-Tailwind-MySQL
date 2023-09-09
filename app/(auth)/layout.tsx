@@ -1,9 +1,8 @@
 const Authlayout = ({children}:{children: React.ReactNode}) => {
     return ( 
-      <div className="bg-orange-500 h-full">
+       <div className="h-screen flex items-center justify-center">
         <div>{children}</div>
         </div>
-
      );
 }
  
