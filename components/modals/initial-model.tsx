@@ -1,13 +1,20 @@
 "use client";
+
 import * as z from 'zod';
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form";
+import { useEffect, useState } from 'react';
+
+// import dynamic from 'next/dynamic';
+
+
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "../ui/dialog";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Button } from '../ui/button';
-import dynamic from 'next/dynamic';
 import { Input } from '../ui/input';
-import { useEffect, useState } from 'react';
+
+
+import FileUpload from '@/components/file-upload';
 
 const formSchema = z.object({
     name: z.string().min(1, {
@@ -20,10 +27,10 @@ const formSchema = z.object({
 
 const InitialModal = () => {
 
-    const [isMounted, setIsMounted] =  useState(false);
-    useEffect(()=>{
-       setIsMounted(true);
-    },[])
+    const [isMounted, setIsMounted] = useState(false);
+    useEffect(() => {
+        setIsMounted(true);
+    }, [])
 
     const form = useForm({
         resolver: zodResolver(formSchema),
@@ -40,7 +47,7 @@ const InitialModal = () => {
 
     }
 
-    if(!isMounted){
+    if (!isMounted) {
         return null
     }
 
@@ -58,7 +65,15 @@ const InitialModal = () => {
                     <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8'>
                         <div className='space-y-8 px-6' >
                             <div className='flex items-center justify-center text-center'>
-                                TODO: Image Upload
+                                <FormField control={form.control} name="imageURL" render={({ field }) => (
+                                    <FormItem>
+                                          <FormControl>
+                                            <FileUpload endpoint="serverImage" value={field.value}
+                                             onChange={field.onChange}/>
+                                          </FormControl>
+                                    </FormItem>
+                                )}
+                                />
                             </div>
 
                             <FormField control={form.control} name="name" render={({ field }) => (
@@ -70,7 +85,7 @@ const InitialModal = () => {
                                         <Input disabled={isLoading} className='bg-zinc-300/50  border-0 
                                          focus-visible:ring-0 text-black
                                          focus-visible:ring-offset-0'
-                                            placeholder='Enter Server name' {...field} />
+                                            placeholder='Enter Server name'  {...field} />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
