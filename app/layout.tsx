@@ -23,7 +23,7 @@ export default function RootLayout({
       <html lang="en"  suppressHydrationWarning={true}  >
         <body className={cn(font.className, "bg-white dark:bg-[#313338]")}  >
          <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={true} 
-            storageKey='discordCloneTheme'  forcedTheme='dark' > 
+            storageKey='discordCloneTheme'   > 
            {children}
           </ThemeProvider>
         </body>
