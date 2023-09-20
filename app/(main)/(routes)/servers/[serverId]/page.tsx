@@ -1,7 +1,7 @@
 const ServerIdpage = () => {
     return ( 
     <div>
-       Server Id Page
+       Server Id cmpoenet
     </div> 
     );
 }
