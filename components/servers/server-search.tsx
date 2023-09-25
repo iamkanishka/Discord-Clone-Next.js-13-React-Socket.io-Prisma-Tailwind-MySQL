@@ -35,8 +35,6 @@ const ServerSearchBar = ({ data }: ServerSearchBarProps) => {
 
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
-      console.log(e);
-
       if (e.key === "f" && (e.metaKey || e.ctrlKey)) {
         e.preventDefault();
         setOpen((open) => !open);
