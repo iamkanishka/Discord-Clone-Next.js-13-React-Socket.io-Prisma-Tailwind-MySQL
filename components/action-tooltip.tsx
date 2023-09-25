@@ -11,7 +11,7 @@ interface ActionTooltipProps {
   label: string;
   children: React.ReactNode;
   side?: "top" | "bottom" | "right" | "left";
-  align: "start" | "center" | "end";
+  align?: "start" | "center" | "end";
 }
 
 const ActionTooltip = ({
