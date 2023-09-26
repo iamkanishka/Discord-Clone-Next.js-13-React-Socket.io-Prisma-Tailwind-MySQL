@@ -6,7 +6,7 @@ import { NextResponse } from "next/server";
 import { v4 as uuidv4 } from "uuid";
 export async function POST(req: Request) {
   try {
-    const { name, imageURL } = await req.json();
+    const { name, imageUrl } = await req.json();
     const profile = await currentProfile();
 
     if (!profile) {
@@ -17,7 +17,7 @@ export async function POST(req: Request) {
       data: {
         profileId: profile.id,
         name: name,
-        imageURL: imageURL,
+        imageUrl: imageUrl,
         inviteCode: uuidv4(),
         channels: {
           create: [{ name: "general", profileId: profile.id }],
@@ -30,7 +30,7 @@ export async function POST(req: Request) {
 
     return NextResponse.json(server)
   } catch (err) {
-    console.log("[Server Error]");
+    console.log("[Server Error]", err);
     return new NextResponse("Internal Error", { status: 500 });
   }
 }

@@ -22,7 +22,7 @@ export const initialProfile = async () => {
         data: {
             userId: user.id,
             name: `${user.firstName} ${user.lastName}`,
-            imageURL: user.imageUrl,
+            imageUrl: user.imageUrl,
             email: user.emailAddresses[0].emailAddress
         }
     })
