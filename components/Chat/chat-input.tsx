@@ -14,6 +14,8 @@ import qs from "query-string";
 
 import axios from "axios";
 
+import { useRouter } from "next/navigation";
+
 interface ChatInputProps {
   apiUrl: string;
   query: Record<string, any>;
@@ -26,6 +28,8 @@ const formSchema = z.object({
 });
 
 const ChatInput = ({ apiUrl, query, name, type }: ChatInputProps) => {
+  const router = useRouter();
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -42,7 +46,11 @@ const ChatInput = ({ apiUrl, query, name, type }: ChatInputProps) => {
         query,
       });
       await axios.post(url, values);
-    } catch (error) {}
+      form.reset();
+      router.refresh();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
