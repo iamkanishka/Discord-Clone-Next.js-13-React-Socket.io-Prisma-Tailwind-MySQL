@@ -41,7 +41,11 @@ export const useChatQuery = ({
     queryKey: [queryKey],
     queryFn: fetchMessages,
     getNextPageParam: (lastPage) => lastPage?.nextCursor,
-    refetchInterval: isConnected ? false : 1000,
+     refetchInterval: isConnected ? false : 1000,
+    
+    //One method to reolved the websolcet terminla issue
+    // refetchInterval: 1000,
+
   });
 
   return {
